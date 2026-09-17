@@ -36,8 +36,26 @@ score = r2_score(test_y, test_y_)
 print(score)
 
 # matplotlib
-plt.scatter(df["area"], df["price"],  color='blue')
-plt.plot(train_x, model.coef_[0][0]*train_x + model.intercept_[0], '-r')
-plt.xlabel("Engine size")
-plt.ylabel("Emission")
+area_range = np.linspace(df["area"].min(), df["area"].max(), 100)
+
+plot_data = pd.DataFrame({
+    "area": area_range,
+    "room": df["room"].mean(),
+    "age": df["age"].mean(),
+    "floor": df["floor"].mean(),
+    "parking": df["parking"].mean(),
+    "elevator": df["elevator"].mean(),
+    "warehouse": df["warehouse"].mean(),
+    "location_score": df["location_score"].mean()
+})
+
+predicted_price = model.predict(plot_data)
+
+plt.scatter(df["area"], df["price"], color="blue", label="Real Data")
+plt.plot(area_range, predicted_price, color="red", label="Prediction")
+
+plt.xlabel("Area")
+plt.ylabel("Price")
+plt.title("House Price Prediction")
+plt.legend()
 plt.show()
