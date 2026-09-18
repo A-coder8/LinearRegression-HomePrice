@@ -35,6 +35,12 @@ test_y_ = model.predict(test_x)
 score = r2_score(test_y, test_y_)
 print(score)
 
+# test a model with your Data
+len_n = len(["area","room","age","floor","parking","elevator","warehouse","location_score"])
+prediction_array = np.array([[int(input(f"Enter a {df.columns[i]}:")) for i in range(8)]])
+prediction = model.predict(prediction_array)
+print("model answer is:", prediction[0][0])
+
 # matplotlib
 area_range = np.linspace(df["area"].min(), df["area"].max(), 100)
 
