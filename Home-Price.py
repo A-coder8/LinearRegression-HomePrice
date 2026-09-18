@@ -9,7 +9,7 @@ from sklearn.metrics import r2_score
 model = linear_model.LinearRegression()
 
 # read a csv File
-csv_file = pd.read_csv("~/myproject/machine Learing/Regression/house_price.csv")
+csv_file = pd.read_csv("./house_price.csv")
 
 # create a DataFrame
 df = pd.DataFrame(csv_file)
